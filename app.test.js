@@ -28,5 +28,28 @@ describe('Restaurant Database', () => {
 			expect(testBeverages.name).toBe("Thai Iced Tea");
 		})
 
+		test('Restaurant has many menus with meals', async () => {
+			const restaurant = await Restaurant.create({name :"Dinner" })
 	
+			const noodles = await Meals.create({name : 'noodles', meals : 'Dinner'});
+			const steak = await Meals.create({name : 'steak', meals : 'Dinner'});
+			const sandwich = await Meals.create({name : 'sandwich', meals : 'Dinner'});
+	
+			await Dinner.addMeals(noodles)
+			await Dinner.addMeals(steak)
+			await Dinner.addMeals(sanwich)
+	
+			const menus = await Dinner.getMeals() 
+	
+			expect(meals.length).toBe(3)
+			expect(meals[0] instanceof menu).toBeTruthy
+	
+		})
+	
+		
+	
+
+
 	})
+
+
